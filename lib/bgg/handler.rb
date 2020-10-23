@@ -58,4 +58,16 @@ class Bgg::Handler
 
     user_games.sort_by{|gm| gm[:plays]}.reverse.take(limit)
   end
+
+  def self.favorite_designers(username, limit = 10)
+    #TBD
+  end
+
+  def self.suggested_games(username)
+    #TBD
+  end
+
+  def self.top_rated_games(username, limit = 10)
+    #TBD
+  end
 end
