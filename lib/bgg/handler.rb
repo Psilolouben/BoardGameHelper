@@ -34,6 +34,25 @@ class Bgg::Handler
     player_common_games
   end
 
+  def self.common_games(usernames)
+    if(usernames.count <= 1)
+      puts "More players needed!"
+
+      return
+    end
+
+    player_common_games = []
+    usernames.each do |user|
+      if player_common_games.empty?
+        player_common_games = fetch_user_games(user).map{ |game| { id: game[:bgg_id], name: game[:name] } }
+      else
+        player_common_games &= fetch_user_games(user).map{ |game| { id: game[:bgg_id], name: game[:name] } }
+      end
+    end.uniq
+
+    player_common_games
+  end
+
   def self.most_played_games(username, limit = 10)
     user_games = fetch_user_games(username)
 
